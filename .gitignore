@@ -1,0 +1,6 @@
+*.json
+*.simg
+cromwell*
+input/
+output/
+Old_container
