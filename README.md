@@ -5,7 +5,8 @@ AchabInsinguLARITY, a container to use captainAchab workflow easier !
 
 ## Goals 
 
-Use a Singularity container which already has all tools to run captainAchab workfflow. 
+Use a Singularity container which already has all tools to run captainAchab workflow. 
+![captain achab workflow description](/img/captainAchab.svg)
 
 
 ## Run 
