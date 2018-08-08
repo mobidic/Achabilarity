@@ -42,3 +42,17 @@ This Singularity contains CentOS environnement and all requirements to run Capta
 **Make sure you already have Annovar (and its database) to bind it. It is not include in this container.**
 
 The container will execute specific wrapper of cromwell ([Crom-wellWrapped](https://github.com/mobidic/Crom-wellWrapped)) which will generate the right cromwell command depending on options and arguments.
+
+--------------------------------------------------------------------------------
+
+**Montpellier Bioinformatique pour le Diagnostique Clinique (MoBiDiC)**
+
+*CHU de Montpellier*
+
+France
+
+![MoBiDiC](img/logo-mobidic.png)
+
+[Visit our website](https://neuro-2.iurc.montp.inserm.fr/mobidic/)
+
+--------------------------------------------------------------------------------
