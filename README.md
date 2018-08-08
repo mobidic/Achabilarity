@@ -2,6 +2,8 @@
 
 AchabInsinguLARITY, a container to use captainAchab workflow easier ! 
 
+<img src="img/achab_logo.png" width="350">
+
 
 ## Goals 
 
