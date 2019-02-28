@@ -18,11 +18,17 @@ Include: yum
   mkdir /softwares
   echo "... Done !"
   #For Phenolyzer
+<<<<<<< HEAD
+  yum -y install perl-devel perl-CPAN perl-GD perl-XML-LibXML perl-Switch perl-DBI
+  curl -L http://cpanmin.us | perl - App::cpanminus
+  cpanm --force Bio::Perl
+=======
   yum -y install perl-devel
   yum -y install perl-CPAN
   curl -L http://cpanmin.us | perl - App::cpanminus
   cpanm --force Bio::Perl
   cpanm Switch 
+>>>>>>> 472cb92a76e9286cc2caaa6415f5d16787d607c3
   cpanm Graph::Directed 
   cpanm --force Bio::OntologyIO 
   cpanm --force Excel::Writer::XLSX
@@ -39,6 +45,29 @@ Include: yum
   pip3 install PyVCF
   echo "... Done !"
 
+<<<<<<< HEAD
+  echo "Installing BCFtools ..."
+  wget https://github.com/samtools/htslib/releases/download/1.9/htslib-1.9.tar.bz2
+  tar -xjf htslib-1.9.tar.bz2
+  cd htslib-1.9 && ./configure --prefix=/usr/local && make && make install
+  wget https://github.com/samtools/bcftools/releases/download/1.9/bcftools-1.9.tar.bz2
+  tar -xjf bcftools-1.9.tar.bz2
+  cd bcftools-1.9  && ./configure --prefix=/usr/local && make && make install
+
+  #git clone git://github.com/samtools/htslib.git
+  #git clone git://github.com/samtools/bcftools.git
+  #cd bcftools 
+  #make
+  #mv bcftools /usr/local/bin
+  #cd ..
+  #rm -rf bcftools
+  echo "... Done !"
+
+  echo "Installing Cromwell ..."
+  #wget https://github.com/broadinstitute/cromwell/releases/download/31.1/cromwell-31.1.jar
+  wget https://github.com/broadinstitute/cromwell/releases/download/36.1/cromwell-36.1.jar  
+  mv cromwell-36.1.jar /softwares 
+=======
   echo "Insalling BCFtools ..."
   git clone git://github.com/samtools/htslib.git
   git clone git://github.com/samtools/bcftools.git
@@ -52,6 +81,7 @@ Include: yum
   echo "Installing Cromwell ..."
   wget https://github.com/broadinstitute/cromwell/releases/download/31.1/cromwell-31.1.jar
   mv cromwell-31.1.jar /softwares 
+>>>>>>> 472cb92a76e9286cc2caaa6415f5d16787d607c3
   echo "... Done !"
 
   echo "Installing GATK4 ..."
@@ -60,6 +90,16 @@ Include: yum
   rm gatk-4.0.4.0.zip 
   echo "... Done !"
 
+<<<<<<< HEAD
+  echo "Installing Annovar ..."
+  wget https://neuro-2.iurc.montp.inserm.fr/sources/annovar.tar.gz
+  tar -xzf annovar.tar.gz
+  mv annovar /softwares 
+  rm annovar.tar.gz 
+  echo "... Done !"
+
+=======
+>>>>>>> 472cb92a76e9286cc2caaa6415f5d16787d607c3
   echo "Installing MPA ..."
   git clone https://github.com/mobidic/MPA.git
   mv MPA /softwares
@@ -88,6 +128,16 @@ Include: yum
 
 %runscript
   echo "Run Crom-wellWrapped with theses arguments : $*"
+<<<<<<< HEAD
+  exec /softwares/Crom-wellWrapped/cww.sh -e /softwares/cromwell-36.1.jar -w /softwares/MobiDL/captainAchab.wdl "$@"
+
+
+%help
+  Captain ACHAB is a simple and useful interface to analyse NGS data for molecular diagnosis. 
+  This container has a wrapper for cromwell you can launch with :
+
+  captainAchab.simg -i [yourinputfile]_inputs.json 
+=======
   exec /softwares/Crom-wellWrapped/cww.sh -e /softwares/cromwell-31.1.jar -w /softwares/MobiDL/captainAchab.wdl "$@"
 
 
@@ -96,6 +146,7 @@ Include: yum
   This container has a wrapper for cromwell you can launch with :
 
   /PATH/TO/singularity run captainAchab.simg -i [yourinputfile]_inputs.json 
+>>>>>>> 472cb92a76e9286cc2caaa6415f5d16787d607c3
   
   More options : 
   -c | --conf <file.conf> : To add a conf file
@@ -103,6 +154,13 @@ Include: yum
   -v | --verbosity <1, 2, 3 or 4> : To set verbosity level (ERROR : 1 | WARNING : 2 | INFO [default] : 3 | DEBUG : 4)
   -h | --help : Print help message in terminal and close the script
 
+<<<<<<< HEAD
+  Be careful, you have to put all your input files (except json) in the input folder. You need to have 2 files : 
+  - disease.txt
+  - vcf file
+
+
+=======
   Be careful, you have to put all your input files (except json) in your input folder. You must have these following files : 
   - phenotype.txt
   - gene_for_pathology.txt
@@ -110,3 +168,4 @@ Include: yum
   - Genome of reference
   - Databases for Annovar 
   - Custom xref 
+>>>>>>> 472cb92a76e9286cc2caaa6415f5d16787d607c3
