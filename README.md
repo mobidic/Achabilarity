@@ -16,7 +16,7 @@ Use a Singularity container which already has all tools to run captainAchab work
 **First, build**
 
 ```bash
-singularity build <filename.simg> Singulairty 
+singularity build <filename.simg> Singularity 
 ```
 
 **Then run**
