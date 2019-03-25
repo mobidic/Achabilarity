@@ -84,12 +84,14 @@ Include: yum
   rm gatk-4.0.4.0.zip 
   echo "... Done !"
 
-  echo "Installing Annovar ..."
-  wget https://neuro-2.iurc.montp.inserm.fr/sources/annovar.tar.gz
-  tar -xzf annovar.tar.gz
-  mv annovar /softwares 
-  rm annovar.tar.gz 
-  echo "... Done !"
+  #ANNOVAR MUST BE BOUND TO THE CONTAINER
+  #e.g. singularity run -B /path/to/annovar/:/media -B /path/to/data/:/mnt achabilarity.simg -c /path/to/conf -i /path/to/json
+  #echo "Installing Annovar ..."
+  #wget https://neuro-2.iurc.montp.inserm.fr/sources/annovar.tar.gz
+  #tar -xzf annovar.tar.gz
+  #mv annovar /softwares 
+  #rm annovar.tar.gz 
+  #echo "... Done !"
 
   echo "Installing MPA ..."
   git clone https://github.com/mobidic/MPA.git
