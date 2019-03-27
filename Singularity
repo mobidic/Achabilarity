@@ -42,21 +42,14 @@ Include: yum
   pip3 install PyVCF
   echo "... Done !"
 
-  echo "Installing BCFtools ..."
+  echo "Installing HTSlib & BCFtools ..."
   wget https://github.com/samtools/htslib/releases/download/1.9/htslib-1.9.tar.bz2
   tar -xjf htslib-1.9.tar.bz2
   cd htslib-1.9 && ./configure --prefix=/usr/local && make && make install
   wget https://github.com/samtools/bcftools/releases/download/1.9/bcftools-1.9.tar.bz2
   tar -xjf bcftools-1.9.tar.bz2
   cd bcftools-1.9  && ./configure --prefix=/usr/local && make && make install
-
-  #git clone git://github.com/samtools/htslib.git
-  #git clone git://github.com/samtools/bcftools.git
-  #cd bcftools 
-  #make
-  #mv bcftools /usr/local/bin
-  #cd ..
-  #rm -rf bcftools
+  cd / && rm -rf htslib-1.9
   echo "... Done !"
 
   echo "Installing Cromwell ..."
@@ -73,15 +66,10 @@ Include: yum
   #rm -rf bcftools
   #echo "... Done !"
 
-  #echo "Installing Cromwell ..."
-  #wget https://github.com/broadinstitute/cromwell/releases/download/31.1/cromwell-31.1.jar
-  #mv cromwell-31.1.jar /softwares 
-  #echo "... Done !"
-
   echo "Installing GATK4 ..."
-  wget https://github.com/broadinstitute/gatk/releases/download/4.0.4.0/gatk-4.0.4.0.zip
-  unzip gatk-4.0.4.0.zip -d /softwares/
-  rm gatk-4.0.4.0.zip 
+  wget https://github.com/broadinstitute/gatk/releases/download/4.1.0.0/gatk-4.1.0.0.zip
+  unzip gatk-4.1.0.0.zip -d /softwares/
+  rm gatk-4.1.0.0.zip 
   echo "... Done !"
 
   #ANNOVAR MUST BE BOUND TO THE CONTAINER
