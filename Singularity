@@ -49,7 +49,7 @@ Include: yum
   wget https://github.com/samtools/bcftools/releases/download/1.9/bcftools-1.9.tar.bz2
   tar -xjf bcftools-1.9.tar.bz2
   cd bcftools-1.9  && ./configure --prefix=/usr/local && make && make install
-  cd / && rm -rf htslib-1.9
+  cd / && rm -rf htslib-1.9 htslib-1.9.tar.bz2
   echo "... Done !"
 
   echo "Installing Cromwell ..."
