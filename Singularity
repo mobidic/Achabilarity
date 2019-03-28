@@ -112,35 +112,36 @@ Include: yum
   exec /softwares/Crom-wellWrapped/cww.sh -e /softwares/cromwell-36.1.jar -w /softwares/MobiDL/captainAchab.wdl "$@"
 
 
-%help
-  Captain ACHAB is a simple and useful interface to analyse NGS data for molecular diagnosis. 
-  This container has a wrapper for cromwell you can launch with :
+#%help
+  #Captain ACHAB is a simple and useful interface to analyse NGS data for molecular diagnosis. 
+  #This container has a wrapper for cromwell you can launch with :
 
-  captainAchab.simg -i [yourinputfile]_inputs.json 
-  exec /softwares/Crom-wellWrapped/cww.sh -e /softwares/cromwell-31.1.jar -w /softwares/MobiDL/captainAchab.wdl "$@"
-
+  #Achabilarity.simg -i [yourinputfile]_inputs.json 
+  #exec /softwares/Crom-wellWrapped/cww.sh -e /softwares/cromwell-36.1.jar -w /softwares/MobiDL/captainAchab.wdl "$@"
+  #singularity run -B "/path/to/annovar/:/media" -B "/path/to/data/:/mnt" Achabilarity.simg -o cromwell_options.json -c cromwell.conf -i yourinputsfile_inputs.json
 
 %help
   Captain ACHAB is a simple and useful interface to analysis of WES data for molecular diagnosis. 
   This container has a wrapper for cromwell you can launch with :
 
-  /PATH/TO/singularity run captainAchab.simg -i [yourinputfile]_inputs.json 
+  /PATH/TO/singularity run  -B "/path/to/annovar/:/media" -B "/path/to/data/:/mnt" Achabilarity.simg -i [yourinputfile]_inputs.json 
   
   More options : 
-  -c | --conf <file.conf> : To add a conf file
-  -o | --option <option.json> : To add an option file
+  -c | --conf <file.conf> : To add a cromwell conf file
+  -o | --option <option.json> : To add a cromwell option file
   -v | --verbosity <1, 2, 3 or 4> : To set verbosity level (ERROR : 1 | WARNING : 2 | INFO [default] : 3 | DEBUG : 4)
   -h | --help : Print help message in terminal and close the script
 
-  Be careful, you have to put all your input files (except json) in the input folder. You need to have 2 files : 
+  Be careful, you have to put all your input files in the input folder. You need to have 3 files : 
   - disease.txt
   - vcf file
+  - [yourinputfile]_inputs.json
 
 
-  Be careful, you have to put all your input files (except json) in your input folder. You must have these following files : 
-  - phenotype.txt
-  - gene_for_pathology.txt
-  - vcf file
-  - Genome of reference
-  - Databases for Annovar 
-  - Custom xref 
+  #Be careful, you have to put all your input files (except json) in your input folder. You must have these following files : 
+  #- phenotype.txt
+  #- gene_for_pathology.txt
+  #- vcf file
+  #- Genome of reference
+  #- Databases for Annovar 
+  #- Custom xref 
