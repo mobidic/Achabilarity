@@ -82,8 +82,9 @@ Include: yum
   #echo "... Done !"
 
   echo "Installing MPA ..."
-  git clone https://github.com/mobidic/MPA.git
-  mv MPA /softwares
+  #git clone https://github.com/mobidic/MPA.git
+  #mv MPA /softwares
+  pip3 install mobidic-mpa
   echo "... Done !"
 
   echo "Installing Phenolyzer ..."
