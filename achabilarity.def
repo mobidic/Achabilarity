@@ -20,6 +20,7 @@ Include: yum
   #For Phenolyzer
   yum -y install perl-devel perl-CPAN perl-GD perl-XML-LibXML perl-Switch perl-DBI
   curl -L http://cpanmin.us | perl - App::cpanminus
+  cpanm JSON
   cpanm --force Bio::Perl
   yum -y install perl-devel
   yum -y install perl-CPAN
@@ -31,14 +32,16 @@ Include: yum
   cpanm --force Excel::Writer::XLSX
 
   echo "Installing the lastest release of Python ..."
-  yum -y install https://centos7.iuscommunity.org/ius-release.rpm
-  yum -y install epel-release
-  yum -y install python34
-  yum -y install python34-devel
-  yum -y install python34-setuptools
+  #yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+  # url changed david 07/07/2020
+  yum -y install https://repo.ius.io/ius-release-el7.rpm https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  # yum -y install epel-release
+  yum -y install python36
+  yum -y install python36-devel
+  yum -y install python36-setuptools
   echo "... Done !"
   echo "Installing pip3 ..."
-  easy_install-3.4 pip
+  easy_install-3.6 pip
   pip3 install PyVCF
   echo "... Done !"
 
