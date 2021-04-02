@@ -8,13 +8,13 @@ Include: yum
 
 %post
   echo "Updating CentOS and installing mandatory packages ..."
-  yum -y update 
+  yum -y update
   yum group install -y "development tools"
-  yum -y install  wget git zlib-devel which 
-  #For GATK 
-  yum -y install java-1.8.0-openjdk-devel 
-  #For MPA 
-  yum install -y bzip2-devel ncurses-devel readline-devel tk-devel gdbm-devel xz-devel expat-devel 
+  yum -y install  wget git zlib-devel which
+  #For GATK
+  yum -y install java-1.8.0-openjdk-devel
+  #For MPA
+  yum install -y bzip2-devel ncurses-devel readline-devel tk-devel gdbm-devel xz-devel expat-devel
   mkdir /softwares
   echo "... Done !"
   #For Phenolyzer
@@ -25,9 +25,9 @@ Include: yum
   yum -y install perl-CPAN
   curl -L http://cpanmin.us | perl - App::cpanminus
   cpanm --force Bio::Perl
-  cpanm Switch 
-  cpanm Graph::Directed 
-  cpanm --force Bio::OntologyIO 
+  cpanm Switch
+  cpanm Graph::Directed
+  cpanm --force Bio::OntologyIO
   cpanm --force Excel::Writer::XLSX
 
   echo "Installing the lastest release of Python ..."
@@ -53,13 +53,14 @@ Include: yum
   echo "... Done !"
 
   echo "Installing Cromwell ..."
-  #wget https://github.com/broadinstitute/cromwell/releases/download/31.1/cromwell-31.1.jar
-  wget https://github.com/broadinstitute/cromwell/releases/download/36.1/cromwell-36.1.jar  
-  mv cromwell-36.1.jar /softwares 
+  # wget https://github.com/broadinstitute/cromwell/releases/download/31.1/cromwell-31.1.jar
+  # wget https://github.com/broadinstitute/cromwell/releases/download/36.1/cromwell-36.1.jar
+  wget https://github.com/broadinstitute/cromwell/releases/download/60/cromwell-60.jar
+  mv cromwell-36.1.jar /softwares
   #echo "Installing BCFtools ..."
   #git clone git://github.com/samtools/htslib.git
   #git clone git://github.com/samtools/bcftools.git
-  #cd bcftools 
+  #cd bcftools
   #make
   #mv bcftools /usr/local/bin
   #cd ..
@@ -69,7 +70,7 @@ Include: yum
   echo "Installing GATK4 ..."
   wget https://github.com/broadinstitute/gatk/releases/download/4.1.0.0/gatk-4.1.0.0.zip
   unzip gatk-4.1.0.0.zip -d /softwares/
-  rm gatk-4.1.0.0.zip 
+  rm gatk-4.1.0.0.zip
   echo "... Done !"
 
   #ANNOVAR MUST BE BOUND TO THE CONTAINER
@@ -77,8 +78,8 @@ Include: yum
   #echo "Installing Annovar ..."
   #wget https://neuro-2.iurc.montp.inserm.fr/sources/annovar.tar.gz
   #tar -xzf annovar.tar.gz
-  #mv annovar /softwares 
-  #rm annovar.tar.gz 
+  #mv annovar /softwares
+  #rm annovar.tar.gz
   #echo "... Done !"
 
   echo "Installing MPA ..."
@@ -99,13 +100,13 @@ Include: yum
 
   echo "Importing Captain Achab wdl from GitHub ..."
   git clone https://github.com/mobidic/MobiDL
-  mv MobiDL /softwares 
-  sed -i -e "s/modules\//\/softwares\/MobiDL\/modules\//g" /softwares/MobiDL/captainAchab.wdl 
+  mv MobiDL /softwares
+  sed -i -e "s/modules\//\/softwares\/MobiDL\/modules\//g" /softwares/MobiDL/captainAchab.wdl
   echo ".. Done !"
 
   echo "Importing Crom-wellWrapped from GitHub ..."
   git clone https://github.com/mobidic/Crom-wellWrapped
-  mv Crom-wellWrapped /softwares 
+  mv Crom-wellWrapped /softwares
   echo "... Done !"
 
 %runscript
@@ -114,35 +115,35 @@ Include: yum
 
 
 #%help
-  #Captain ACHAB is a simple and useful interface to analyse NGS data for molecular diagnosis. 
+  #Captain ACHAB is a simple and useful interface to analyse NGS data for molecular diagnosis.
   #This container has a wrapper for cromwell you can launch with :
 
-  #Achabilarity.simg -i [yourinputfile]_inputs.json 
+  #Achabilarity.simg -i [yourinputfile]_inputs.json
   #exec /softwares/Crom-wellWrapped/cww.sh -e /softwares/cromwell-36.1.jar -w /softwares/MobiDL/captainAchab.wdl "$@"
   #singularity run -B "/path/to/annovar/:/media" -B "/path/to/data/:/mnt" Achabilarity.simg -o cromwell_options.json -c cromwell.conf -i yourinputsfile_inputs.json
 
 %help
-  Captain ACHAB is a simple and useful interface to analysis of WES data for molecular diagnosis. 
+  Captain ACHAB is a simple and useful interface to analysis of WES data for molecular diagnosis.
   This container has a wrapper for cromwell you can launch with :
 
-  /PATH/TO/singularity run  -B "/path/to/annovar/:/media" -B "/path/to/data/:/mnt" Achabilarity.simg -i [yourinputfile]_inputs.json 
-  
-  More options : 
+  /PATH/TO/singularity run  -B "/path/to/annovar/:/media" -B "/path/to/data/:/mnt" Achabilarity.simg -i [yourinputfile]_inputs.json
+
+  More options :
   -c | --conf <file.conf> : To add a cromwell conf file
   -o | --option <option.json> : To add a cromwell option file
   -v | --verbosity <1, 2, 3 or 4> : To set verbosity level (ERROR : 1 | WARNING : 2 | INFO [default] : 3 | DEBUG : 4)
   -h | --help : Print help message in terminal and close the script
 
-  Be careful, you have to put all your input files in the input folder. You need to have 3 files : 
+  Be careful, you have to put all your input files in the input folder. You need to have 3 files :
   - disease.txt
   - vcf file
   - [yourinputfile]_inputs.json
 
 
-  #Be careful, you have to put all your input files (except json) in your input folder. You must have these following files : 
+  #Be careful, you have to put all your input files (except json) in your input folder. You must have these following files :
   #- phenotype.txt
   #- gene_for_pathology.txt
   #- vcf file
   #- Genome of reference
-  #- Databases for Annovar 
-  #- Custom xref 
+  #- Databases for Annovar
+  #- Custom xref
